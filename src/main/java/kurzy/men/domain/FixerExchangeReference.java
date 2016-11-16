@@ -8,11 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by honzapua on 12.11.2016.
+ * * Balik domen reprezentuje data v databazi
  */
 @Entity
-@Table(name = "exchange_referencies")
-public class ExchangeReference implements Serializable {
+@Table(name = "FIXER_EXCHANGE_REFERENCIES")
+public class FixerExchangeReference implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -31,9 +31,9 @@ public class ExchangeReference implements Serializable {
     @NotNull
     private Date lastUpdated;
 
-    @OneToMany(mappedBy = "exchangeReference", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fixerExchangeReference", cascade = CascadeType.ALL)
     //
-    private List<ExchangeRate> exchangeRates = new ArrayList<>();
+    private List<FixerExchangeRate> fixerExchangeRates = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -67,11 +67,11 @@ public class ExchangeReference implements Serializable {
         this.lastUpdated = lastUpdated;
     }
 
-    public List<ExchangeRate> getExchangeRates() {
-        return exchangeRates;
+    public List<FixerExchangeRate> getFixerExchangeRates() {
+        return fixerExchangeRates;
     }
 
-    public void setExchangeRates(List<ExchangeRate> exchangeRates) {
-        this.exchangeRates = exchangeRates;
+    public void setFixerExchangeRates(List<FixerExchangeRate> fixerExchangeRates) {
+        this.fixerExchangeRates = fixerExchangeRates;
     }
 }

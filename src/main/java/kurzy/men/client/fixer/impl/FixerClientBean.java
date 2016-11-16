@@ -1,6 +1,8 @@
 package kurzy.men.client.fixer.impl;
 
 import kurzy.men.client.fixer.api.FixerClient;
+import kurzy.men.constant.ApplicationConst;
+import kurzy.men.utils.DateUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import kurzy.men.client.fixer.api.dto.ExchangeReferenceDTO;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by honzapua on 4.11.2016.
+ * Implementace klienta podle rozhrani Fixeru. Interface fixer client
  */
 @Service
 class FixerClientBean implements FixerClient {
@@ -20,26 +22,25 @@ class FixerClientBean implements FixerClient {
     @Override
     public ExchangeReferenceDTO getLatestExchangeReferenceRates() {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("http://api.fixer.io/latest", ExchangeReferenceDTO.class);
+        return restTemplate.getForObject(ApplicationConst.FIXER_RATES_URL, ExchangeReferenceDTO.class);
     }
 
     @Override
     public ExchangeReferenceDTO getLatestExchangeReferenceRates(String base) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("http://api.fixer.io/latest?base={base}", ExchangeReferenceDTO.class, base);
+        return restTemplate.getForObject(ApplicationConst.FIXER_RATES_BASE_URL, ExchangeReferenceDTO.class, base);
     }
 
     @Override
     public ExchangeReferenceDTO getHistoricalRates(Date date) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("http://api.fixer.io/{date}", ExchangeReferenceDTO.class, dateToISOString(date));
+        return restTemplate.getForObject(ApplicationConst.FIXER_HISTORIC_RATES_URL, ExchangeReferenceDTO.class, DateUtils.dateToISOString(date));
     }
 
     @Override
     public ExchangeReferenceDTO getLatestExchangeReferenceRates(String[] symbols) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("http://api.fixer.io/latest?symbols={symbols}", ExchangeReferenceDTO.class, new Object[] {symbols});
-
+        return restTemplate.getForObject(ApplicationConst.FIXER_RATES_SYMBOLS_URL, ExchangeReferenceDTO.class, new Object[] {symbols});
     }
 
     @Override
@@ -53,8 +54,4 @@ class FixerClientBean implements FixerClient {
         return result;
     }
 
-    private static String dateToISOString(Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(date);
-    }
 }

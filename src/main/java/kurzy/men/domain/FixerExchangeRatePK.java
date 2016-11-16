@@ -7,9 +7,11 @@ import java.io.Serializable;
 
 /**
  * Slozeny primarni klic v JAVE nejde udelat jinak nez pres @Embeddable
+ * * Balik domen reprezentuje data v databazi
+ * // Java reprezentace PK stane se soucasti SQL az bude pouzit v tabulce, entite...
  */
-@Embeddable
-public class ExchangeRatePK implements Serializable {
+@Embeddable // Java reprezentace PK stane se soucasti SQL az bude pouzit v tabulce, entite...
+public class FixerExchangeRatePK implements Serializable {
 
     @Column(name = "code", length = 3, nullable = false)
     @NotNull
