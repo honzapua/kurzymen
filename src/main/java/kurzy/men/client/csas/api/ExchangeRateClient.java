@@ -1,6 +1,6 @@
 package kurzy.men.client.csas.api;
 
-import kurzy.men.client.csas.api.dto.ExchangeRatesDTO;
+import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import java.util.Date;
 
 /**
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public interface ExchangeRateClient {
 
-    ExchangeRatesDTO getCurrentRates();
-    ExchangeRatesDTO getHistoricalExchangeRates(Date date);
+    CSASExchangeRatesDTO getCurrentRates();
+    CSASExchangeRatesDTO getHistoricalExchangeRates(Date date);
 
 }

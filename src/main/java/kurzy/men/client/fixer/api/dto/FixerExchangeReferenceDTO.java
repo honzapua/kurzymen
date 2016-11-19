@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by honzapua on 4.11.2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ExchangeReferenceDTO implements Serializable {
+public class FixerExchangeReferenceDTO implements Serializable {
     private String base;
     private Date date;
     private Map<String, Double> rates = new HashMap<>(); // Map je interface HashMap implementace konkretni
@@ -43,7 +43,7 @@ public class ExchangeReferenceDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "ExchangeReferenceDTO{" +
+        return "FixerExchangeReferenceDTO{" +
                 "base='" + base + '\'' +
                 ", date=" + date +
                 ", rates=" + rates +

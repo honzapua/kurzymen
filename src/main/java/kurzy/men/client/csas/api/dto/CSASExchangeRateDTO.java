@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Kopiruji promene presne podle API i kdyz ne vsechny vyuziju, ale v budoucnu to muze zkomplikovat.
  */
-public class ExchangeRateDTO implements Serializable {
+public class CSASExchangeRateDTO implements Serializable {
 
     private String shortName;
     private Date validFrom;

@@ -1,8 +1,8 @@
 package kurzy.men.client.csas.impl;
 
 import kurzy.men.client.csas.api.ExchangeRateClient;
-import kurzy.men.client.csas.api.dto.ExchangeRateDTO;
-import kurzy.men.client.csas.api.dto.ExchangeRatesDTO;
+import kurzy.men.client.csas.api.dto.CSASExchangeRateDTO;
+import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.constant.ApplicationConst;
 import kurzy.men.utils.DateUtils;
 import org.springframework.http.HttpEntity;
@@ -26,14 +26,14 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
      * @return vraci kurz k atualnimu datu
      */
     @Override
-    public ExchangeRatesDTO getCurrentRates() {
+    public CSASExchangeRatesDTO getCurrentRates() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.put("WEB-API-key", Arrays.asList(new String[] {
                 WebApiKeyConfiguration.getWebApiKey()}));
         HttpEntity<Object> entity = new HttpEntity<>(headers);
-        ResponseEntity<ExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_CURRENT_RATES_URL, HttpMethod.GET, entity, ExchangeRateDTO[].class);
-        ExchangeRatesDTO dto = new ExchangeRatesDTO();
+        ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_CURRENT_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class);
+        CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));
         return dto;
     }
@@ -44,14 +44,14 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
      * @return vraci kurzy k datu napsanym za lomitkem URL
      */
     @Override
-    public ExchangeRatesDTO getHistoricalExchangeRates(Date date) {
+    public CSASExchangeRatesDTO getHistoricalExchangeRates(Date date) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.put("WEB-API-key", Arrays.asList(new String[] {
                 WebApiKeyConfiguration.getWebApiKey()}));
         HttpEntity<Object> entity = new HttpEntity<>(headers);
-        ResponseEntity<ExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_HISTORIC_EXCHANGE_RATES_URL, HttpMethod.GET, entity, ExchangeRateDTO[].class, DateUtils.dateToISOString(date));
-        ExchangeRatesDTO dto = new ExchangeRatesDTO();
+        ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_HISTORIC_EXCHANGE_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class, DateUtils.dateToISOString(date));
+        CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));
         return dto;
     }
