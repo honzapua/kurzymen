@@ -1,13 +1,15 @@
 package kurzy.men.web;
 
 import kurzy.men.client.csas.api.ExchangeRateClient;
-import kurzy.men.client.csas.api.dto.ExchangeRateDTO;
-import kurzy.men.client.csas.api.dto.ExchangeRatesDTO;
+import kurzy.men.client.csas.api.dto.CSASExchangeRateDTO;
+import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.client.fixer.api.FixerClient;
-import kurzy.men.client.fixer.api.dto.ExchangeReferenceDTO;
+import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
 import kurzy.men.domain.*;
 import kurzy.men.repositories.CsasExchangeReferenceRepository;
 import kurzy.men.repositories.FixerExchangeReferenceRepository;
+import kurzy.men.services.api.dto.ExchangeRatesDTO;
+import kurzy.men.services.api.exchangerates.ExchangeRatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +37,21 @@ public class TestController {
     @Autowired
     private CsasExchangeReferenceRepository csasExchangeReferenceRepository;
 
+    @Autowired
+    private ExchangeRatesService exchangeRatesService;
+
+    @RequestMapping(value = "/service")
+    public ExchangeRatesDTO callService() {
+        return exchangeRatesService.getExchangeRates();
+    }
+
     /**
      * Dostava z fixeru ulozi do DB a vrati na frontEnd
      * @return dto fixer je client nas
      */
     @RequestMapping(value = "/fixerlist")
-    public ExchangeReferenceDTO getRates() {
-        ExchangeReferenceDTO dto = fixerClient.getLatestExchangeReferenceRates();
+    public FixerExchangeReferenceDTO getRates() {
+        FixerExchangeReferenceDTO dto = fixerClient.getLatestExchangeReferenceRates();
         FixerExchangeReference er = new FixerExchangeReference();
         er.setBase(dto.getBase());
         er.setDate(dto.getDate());
@@ -66,14 +76,14 @@ public class TestController {
     }
 
     @RequestMapping(value = "/csaslist")
-    public ExchangeRatesDTO csasList() {
-        ExchangeRatesDTO dto = csasClient.getCurrentRates();
+    public CSASExchangeRatesDTO csasList() {
+        CSASExchangeRatesDTO dto = csasClient.getCurrentRates();
 
         CsasExchangeReference er = new CsasExchangeReference();
         er.setLastUpdated(new Date());
         er = csasExchangeReferenceRepository.save(er);
 
-        for (ExchangeRateDTO rate : dto.getRates()) {
+        for (CSASExchangeRateDTO rate : dto.getRates()) {
             CsasExchangeRatePK pk = new CsasExchangeRatePK();
 
             pk.setExchangeReferenceId(er.getId());
@@ -109,10 +119,10 @@ public class TestController {
      */
 
     @RequestMapping(value = "/fixerdb")
-    public ExchangeReferenceDTO getFixerDb(@RequestParam(value = "id", required = false) Long id) {
+    public FixerExchangeReferenceDTO getFixerDb(@RequestParam(value = "id", required = false) Long id) {
         FixerExchangeReference er = exchangeReferenceRepository.getOne(id != null ? id : 2L);
 
-        ExchangeReferenceDTO result = new ExchangeReferenceDTO();
+        FixerExchangeReferenceDTO result = new FixerExchangeReferenceDTO();
 
         result.setBase(er.getBase());
         result.setDate(er.getDate());
@@ -124,15 +134,15 @@ public class TestController {
     }
 
     @RequestMapping(value = "/csasdb")
-    public ExchangeRatesDTO getCsasDb(@RequestParam(value = "id", required = false) Long id) {
+    public CSASExchangeRatesDTO getCsasDb(@RequestParam(value = "id", required = false) Long id) {
         CsasExchangeReference er = csasExchangeReferenceRepository.getOne(id != null ? id : 1L);
 
-        ExchangeRatesDTO result = new ExchangeRatesDTO();
+        CSASExchangeRatesDTO result = new CSASExchangeRatesDTO();
 
         for (CsasExchangeRate r : er.getCsasExchangeRates()) {
             CsasExchangeRatePK pk = r.getCsasExchangeRatePK();
 
-            ExchangeRateDTO d = new ExchangeRateDTO();
+            CSASExchangeRateDTO d = new CSASExchangeRateDTO();
 
             d.setVersion(pk.getVersion());
             d.setValSell(pk.getValSell());

@@ -15,6 +15,8 @@ public final class ApplicationConst {
 
     public static final String FIXER_HISTORIC_RATES_URL = "http://api.fixer.io/{date}";
 
+    public static final String FIXER_HISTORIC_RATES_WITH_BASE_URL = "http://api.fixer.io/{date}?base={base}";
+
     public static final String FIXER_RATES_SYMBOLS_URL = "http://api.fixer.io/latest?symbols={symbols}";
 
     public static final String CSAS_CURRENT_RATES_URL = "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates";
