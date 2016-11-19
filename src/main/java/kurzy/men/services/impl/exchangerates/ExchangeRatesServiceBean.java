@@ -9,6 +9,7 @@ import kurzy.men.constant.ApplicationConst;
 import kurzy.men.services.api.dto.ExchangeRateDTO;
 import kurzy.men.services.api.dto.ExchangeRatesDTO;
 import kurzy.men.services.api.exchangerates.ExchangeRatesService;
+import kurzy.men.services.api.exchangeratesstorage.ExchangeRatesStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +30,18 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
     @Autowired
     private ExchangeRateClient csasClient;
+
     @Autowired
     private FixerClient fixerClient;
+
+    @Autowired
+    private ExchangeRatesStorageService exchangeRatesStorageService;
 
     @Override
     public ExchangeRatesDTO getExchangeRates() {
         CSASExchangeRatesDTO csasData = csasClient.getCurrentRates();
         FixerExchangeReferenceDTO fixerData = fixerClient.getLatestExchangeReferenceRates(ApplicationConst.DEFAULT_FIXER_BASE);
-
+        store(csasData, fixerData);
         return normalizeData(csasData, fixerData);
     }
 
@@ -44,11 +49,9 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
     public ExchangeRatesDTO getExchangeRates(Date date) {
         CSASExchangeRatesDTO csasData = csasClient.getHistoricalExchangeRates(date);
         FixerExchangeReferenceDTO fixerData = fixerClient.getHistoricalRates(date, ApplicationConst.DEFAULT_FIXER_BASE);
-
+        store(csasData, fixerData);
         return normalizeData(csasData, fixerData);
     }
-
-
     /**
      * Transformuje sporitelni data <k,v> k = kod meny, v = beana dat pro konkretni menu. Vytvarime neco index v databazi. Kdyz by nebyl index, dochazelo by k FullScan a to by bylo pomale.
      * @param csasData
@@ -93,5 +96,10 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
             result.getRatesByCurrency().put(fixerCurrency, rate);
         }
         return result;
+    }
+
+    private void store(CSASExchangeRatesDTO csasData, FixerExchangeReferenceDTO fixerData){
+        exchangeRatesStorageService.storeExchangeRates(csasData);
+        exchangeRatesStorageService.storeExchangeRates(fixerData);
     }
 }

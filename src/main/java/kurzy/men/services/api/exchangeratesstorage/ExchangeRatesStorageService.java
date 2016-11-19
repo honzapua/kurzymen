@@ -1,10 +1,11 @@
 package kurzy.men.services.api.exchangeratesstorage;
 
+import kurzy.men.annotation.ToDo;
 import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
 
 /**
- * Created by honzapua on 19.11.2016.
+ * Uklada a nacita data integracnich interfacu fixeru a CSAS
  */
 public interface ExchangeRatesStorageService {
 
@@ -12,8 +13,10 @@ public interface ExchangeRatesStorageService {
 
     void storeExchangeRates(FixerExchangeReferenceDTO fixerData);
 
+    @ToDo("remove?")
     CSASExchangeRatesDTO loadCSAS(Long id);
 
+    @ToDo("remove?")
     FixerExchangeReferenceDTO loadFixer(Long id);
 
 }
