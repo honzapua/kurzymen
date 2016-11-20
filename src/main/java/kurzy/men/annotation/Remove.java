@@ -19,8 +19,8 @@ import java.lang.annotation.*;
         ElementType.TYPE_USE
 })
 @Documented  // napise se do dokumentace, ze je k udelani
-public @interface ToDo {
+public @interface Remove {
 
-    String value();
+    String value() default "";
 
 }

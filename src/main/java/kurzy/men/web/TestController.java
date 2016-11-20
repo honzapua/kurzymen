@@ -1,5 +1,6 @@
 package kurzy.men.web;
 
+import kurzy.men.annotation.Remove;
 import kurzy.men.client.csas.api.ExchangeRateClient;
 import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.client.fixer.api.FixerClient;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/test")
+@Remove // oznaceno na budouci smazani
 public class TestController {
 
     @Autowired
