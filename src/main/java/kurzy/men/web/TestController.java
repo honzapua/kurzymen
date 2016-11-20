@@ -5,6 +5,7 @@ import kurzy.men.client.csas.api.ExchangeRateClient;
 import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.client.fixer.api.FixerClient;
 import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
+import kurzy.men.services.api.currencycomparator.CurrencyComparatorService;
 import kurzy.men.services.api.dto.ExchangeRatesDTO;
 import kurzy.men.services.api.exchangerates.ExchangeRatesService;
 import kurzy.men.services.api.exchangeratesstorage.ExchangeRatesStorageService;
@@ -37,6 +38,9 @@ public class TestController {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private CurrencyComparatorService currencyComparatorService;
 
     @RequestMapping(value = "/service")
     public ExchangeRatesDTO callService() {
@@ -83,6 +87,11 @@ public class TestController {
         mail.setBody("Test zpravy Menove Kurzy!");
         mail.getRecipients().add("jan.smidrkal@gmail.com");
         mailService.sendMail(mail);
+    }
+
+    @RequestMapping(value = "/testflow")
+    public void testFlow(){
+        currencyComparatorService.compareAndReport();
     }
 
 }
