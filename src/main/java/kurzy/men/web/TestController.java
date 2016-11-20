@@ -8,6 +8,8 @@ import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
 import kurzy.men.services.api.dto.ExchangeRatesDTO;
 import kurzy.men.services.api.exchangerates.ExchangeRatesService;
 import kurzy.men.services.api.exchangeratesstorage.ExchangeRatesStorageService;
+import kurzy.men.services.api.mailservice.MailService;
+import kurzy.men.services.api.mailservice.dto.MailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +34,9 @@ public class TestController {
 
     @Autowired
     private ExchangeRatesStorageService exchangeRatesStorageService;
+
+    @Autowired
+    private MailService mailService;
 
     @RequestMapping(value = "/service")
     public ExchangeRatesDTO callService() {
@@ -69,6 +74,15 @@ public class TestController {
     @RequestMapping(value = "/csasdb")
     public CSASExchangeRatesDTO getCsasDb(@RequestParam(value = "id", required = false) Long id) {
         return exchangeRatesStorageService.loadCSAS(id);
+    }
+
+    @RequestMapping(value = "/testmail")
+    public void mailTest(){
+        MailDTO mail = new MailDTO();
+        mail.setSubject("Menove Kurzy");
+        mail.setBody("Test zpravy Menove Kurzy!");
+        mail.getRecipients().add("jan.smidrkal@gmail.com");
+        mailService.sendMail(mail);
     }
 
 }

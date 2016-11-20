@@ -5,6 +5,8 @@ package kurzy.men.services.api.configuration;
  */
 public enum ConfigurationOption {
 
-    DEFAULT_FIXER_BASE;
+    DEFAULT_FIXER_BASE,
+
+    APPLICATION_FROM_ADDRESS;
 
 }

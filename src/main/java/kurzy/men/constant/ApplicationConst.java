@@ -20,7 +20,10 @@ public final class ApplicationConst {
     public static final String FIXER_RATES_SYMBOLS_URL = "http://api.fixer.io/latest?symbols={symbols}";
 
     public static final String CSAS_CURRENT_RATES_URL = "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates";
+
     public static final String CSAS_HISTORIC_EXCHANGE_RATES_URL = "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates/{date}";
+
+    public static final String APPLICATION_FROM_ADDRESS = "info@kurzymen.cz";
 
     static {
         DEFAULT_FIXER_BASE = "CZK";
