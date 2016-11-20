@@ -11,7 +11,6 @@ import java.util.List;
  * * Balik domen reprezentuje data v databazi
  */
 @Entity
-@Table(name = "FIXER_EXCHANGE_REFERENCIES")
 public class FixerExchangeReference implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
