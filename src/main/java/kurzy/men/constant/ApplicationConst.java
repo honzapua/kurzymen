@@ -27,6 +27,9 @@ public final class ApplicationConst {
 
     public static final Double CURRENCY_RATE_DIFFERENCE = 0.01D;
 
+    public static final boolean ENABLE_SCHEDULER = true;
+
+
     static {
         DEFAULT_FIXER_BASE = "CZK"; //fixer na rozdil CSAS musime prepnout na CZK
     }
