@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by honzapua on 22.11.2016.
+ * Spousti business logiku kazdou hodinu. V pripade ApplicationConst.ENABLE_SCHEDULER = true;
  */
 @Component
 public class CurrencyComparatorSchedulerBean {
