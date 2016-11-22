@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by honzapua on 20.11.2016.
+ * Vstupni data pro formatovac emailu. Potrebujeme vedet, ktere meny maji pozadavany rozdil v kurzech. Je jich dynamicky pocet proto kolekce List
  */
 public class ReportDataDTO implements Serializable {
-    private String caption;
+    private String caption; //nazev obecne - u nas subject mailu
     private List<ReportDataEntryDTO> entries = new ArrayList<>();
     private List<String> recipients = new ArrayList<>();
 

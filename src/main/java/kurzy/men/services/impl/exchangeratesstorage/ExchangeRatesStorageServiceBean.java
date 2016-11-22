@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Created by honzapua on 19.11.2016.
+ * Vse vychazi z interface
  */
 @Service
 public class ExchangeRatesStorageServiceBean implements ExchangeRatesStorageService {

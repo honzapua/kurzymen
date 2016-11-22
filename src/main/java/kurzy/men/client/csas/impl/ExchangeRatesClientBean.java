@@ -16,14 +16,13 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * implementace klienta  metod REST template
+ * implementace klienta  pomoci metod REST template (springovina)
  */
 @Service
 public class ExchangeRatesClientBean implements ExchangeRateClient {
 
     /**
-     * Aktualni kurzy men
-     * @return vraci kurz k atualnimu datu
+     * {@inheritDoc}
      */
     @Override
     public CSASExchangeRatesDTO getCurrentRates() {
@@ -39,9 +38,7 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
     }
 
     /**
-     *
-     * @param date
-     * @return vraci kurzy k datu napsanym za lomitkem URL
+     * {@inheritDoc}
      */
     @Override
     public CSASExchangeRatesDTO getHistoricalExchangeRates(Date date) {
@@ -50,6 +47,7 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
         headers.put("WEB-API-key", Arrays.asList(new String[] {
                 WebApiKeyConfiguration.getWebApiKey()}));
         HttpEntity<Object> entity = new HttpEntity<>(headers);
+        //Provolo rest vraci kurzy k datu napsanem za lomitkem URL.
         ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_HISTORIC_EXCHANGE_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class, DateUtils.dateToISOString(date));
         CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));

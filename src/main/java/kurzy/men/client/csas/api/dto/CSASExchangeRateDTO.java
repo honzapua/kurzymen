@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Kopiruji promene presne podle API i kdyz ne vsechny vyuziju, ale v budoucnu to muze zkomplikovat.
+ * Kopiruji promene presne podle API i kdyz ne vsechny vyuziju v soucasnosti, ale v budoucnu to muze zkomplikovat veskery vyvoj
  */
 public class CSASExchangeRateDTO implements Serializable {
 

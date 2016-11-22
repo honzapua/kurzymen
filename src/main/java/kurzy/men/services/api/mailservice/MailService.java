@@ -8,7 +8,7 @@ import kurzy.men.services.api.mailservice.dto.MailDTO;
  */
 public interface MailService {
     /**
-     * Odesila maily. Seznam podporovanych vlastnosti. subject, telo zpravy pouze text/plain, vice prijemcu, bez priloh
+     * Odesila maily. Seznam podporovanych vlastnosti: subject, telo zpravy pouze text/plain, vice prijemcu, bez priloh
      * @param mail vlastni zprava k odeslani
      */
     void sendMail(MailDTO mail);

@@ -1,7 +1,7 @@
 package kurzy.men.constant;
 
 /**
- * Created by honzapua on 16.11.2016.
+ * Veskery Konstanty davaji se do API modulu vidi sem 100%. Lidem nedavat nic navic. Jen co potrebuji
  */
 public final class ApplicationConst {
 
@@ -23,10 +23,10 @@ public final class ApplicationConst {
 
     public static final String CSAS_HISTORIC_EXCHANGE_RATES_URL = "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates/{date}";
 
-    public static final String APPLICATION_FROM_ADDRESS = "info@kurzymen.cz";
+    public static final String APPLICATION_FROM_ADDRESS = "info@kurzymen.cz"; //gmail nam to prepise
 
     static {
-        DEFAULT_FIXER_BASE = "CZK";
+        DEFAULT_FIXER_BASE = "CZK"; //fixer na rozdil CSAS musime prepnout na CZK
     }
 
     private ApplicationConst() {

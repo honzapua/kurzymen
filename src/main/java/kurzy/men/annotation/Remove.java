@@ -3,7 +3,7 @@ package kurzy.men.annotation;
 import java.lang.annotation.*;
 
 /**
- * Standartnni dle JavaDocu, nad kterymi prvky lze pouzit
+ * Anotace Remove oznacuje to, co nepatri do produkcniho kodu a ma byt odstranen
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({
@@ -18,7 +18,7 @@ import java.lang.annotation.*;
         ElementType.TYPE_PARAMETER,
         ElementType.TYPE_USE
 })
-@Documented  // napise se do dokumentace, ze je k udelani
+@Documented
 public @interface Remove {
 
     String value() default "";

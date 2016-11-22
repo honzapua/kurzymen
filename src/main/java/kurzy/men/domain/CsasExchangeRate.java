@@ -4,17 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by honzapua on 16.11.2016.
+ * Delame primarne JPA, ale chovame se k nemu jako provideru JPA
+ * Entita reprezentuje tabulky.
+ *
+ * Reprezentuje data integracniho kanalu CSAS
+ *
  */
 @Entity
 @Table(name = "CSAS_EXCHANGE_RATES")
 public class CsasExchangeRate implements Serializable {
 
-    @EmbeddedId
+    @EmbeddedId //slozeny primarni klic
     private CsasExchangeRatePK csasExchangeRatePK;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "exchange_reference_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "exchange_reference_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false) //sloupec ktery foreign key
     private CsasExchangeReference csasExchangeReference;
 
     public CsasExchangeRatePK getCsasExchangeRatePK() {

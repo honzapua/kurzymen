@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+/**
+ * Hlavni spustitelna trida
+ */
 @Configuration
 @SpringBootApplication
 @EnableJpaRepositories

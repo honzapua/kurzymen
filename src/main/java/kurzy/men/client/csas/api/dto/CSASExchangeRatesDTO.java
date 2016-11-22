@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by honzapua on 13.11.2016.
+ * Toto je obalka jednotlivych Ratu, vychazi ze struktury API CSAS
  */
-public class CSASExchangeRatesDTO implements Serializable { // prenasi data musi byzt Seriazable
+public class CSASExchangeRatesDTO implements Serializable { // prenasi data musi byt Seriazable
 
     private List<CSASExchangeRateDTO> rates = new ArrayList<>();
 

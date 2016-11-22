@@ -1,7 +1,7 @@
 package kurzy.men.services.api.configuration;
 
 /**
- * Created by honzapua on 16.11.2016.
+ * seznam klicu konfiguracnich voleb podporovanych ConfigurationService
  */
 public enum ConfigurationOption {
 

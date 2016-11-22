@@ -4,7 +4,7 @@ import kurzy.men.services.api.mailservice.dto.MailDTO;
 import kurzy.men.services.api.reportformatter.dto.ReportDataDTO;
 
 /**
- * Created by honzapua on 20.11.2016.
+ * Vytvari report ze vstupnich dat ve formatu pro mail service.
  */
 public interface ReportFormatterService {
 

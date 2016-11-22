@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/test")
-@Remove // oznaceno na budouci smazani
+@Remove // oznaceno na budouci smazani slouzi k testovani services pres browser
 public class TestController {
 
     @Autowired
@@ -69,7 +69,6 @@ public class TestController {
      * Nenacita data z fixeru, ale z nasi DB.
      * @return
      */
-
     @RequestMapping(value = "/fixerdb")
     public FixerExchangeReferenceDTO getFixerDb(@RequestParam(value = "id", required = false) Long id) {
         return exchangeRatesStorageService.loadFixer(id);

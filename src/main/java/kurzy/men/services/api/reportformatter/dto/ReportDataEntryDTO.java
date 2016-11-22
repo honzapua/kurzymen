@@ -3,7 +3,7 @@ package kurzy.men.services.api.reportformatter.dto;
 import java.io.Serializable;
 
 /**
- * Created by honzapua on 20.11.2016.
+ * Data jsou v kolekci a Kolekce je v ReportDataDTO
  */
 public class ReportDataEntryDTO implements Serializable {
     private String description;

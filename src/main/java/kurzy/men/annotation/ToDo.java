@@ -3,8 +3,9 @@ package kurzy.men.annotation;
 import java.lang.annotation.*;
 
 /**
- * Standartnni dle JavaDocu, nad kterymi prvky lze pouzit
+ * Anotace Todo oznacuje nedodelky a k cemu je potreba se v budoucnu vratit
  */
+// Standartnni dle JavaDocu, nad kterymi prvky lze pouzit
 @Retention(RetentionPolicy.SOURCE)
 @Target({
         ElementType.ANNOTATION_TYPE,

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Do body se uklada text zformatovany v plain text takze entery, tabulatory. Pozor kazdy mail client parsuje text trosku jinak.
+ * Do body se uklada zformatovany plain text, tj entery, tabulatory. Pozor kazdy mail client parsuje text trosku jinak.
  * Created by honzapua on 20.11.2016.
  */
 public class MailDTO implements Serializable {

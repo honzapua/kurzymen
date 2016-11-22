@@ -8,7 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by honzapua on 16.11.2016.
+ * Mapuje na tabulku.
+ * Reprezentuje data integracniho kanalu CSAS
  */
 @Entity
 @Table(name = "CSAS_EXCHANGE_REFERENCES")

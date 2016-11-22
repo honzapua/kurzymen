@@ -5,8 +5,10 @@ import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
 
 /**
- * Uklada a nacita data integracnich interfacu fixeru a CSAS
+ * Uklada a nacita data integracnich interfacu fixeru a CSAS z/do DB
+ *
  */
+@ToDo("Odstranit zavislost klientu na DTO")
 public interface ExchangeRatesStorageService {
 
     void storeExchangeRates(CSASExchangeRatesDTO csasData);

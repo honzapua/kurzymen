@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Sjednocene kurzy interfacu CSAS a fixeru do jednotho DTO => Data 2 sluzeb, ale jenom pro jednu konkretni menu. To cele zapouzdreno v RaresDTO
+ * Sjednocene kurzy interfacu CSAS a fixeru do jednotho DTO => Data 2 sluzeb, ale jenom pro jednu konkretni menu. To cele zapouzdreno v ExchangeRatesDTO
  */
 public class ExchangeRateDTO implements Serializable{
 

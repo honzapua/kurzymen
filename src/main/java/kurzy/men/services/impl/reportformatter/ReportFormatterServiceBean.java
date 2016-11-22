@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ReportFormatterServiceBean implements ReportFormatterService{
+
+    /**
+     * Pouziva caption na subject mailu
+     * @param data
+     * @return
+     */
     @Override
     public MailDTO format(ReportDataDTO data) {
         MailDTO result = new MailDTO();

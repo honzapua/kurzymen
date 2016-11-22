@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by honzapua on 16.11.2016.
+ * Slozeny PK tuknout na nazev tridy a alt+F7 find usages kde najdeme pouziti
  */
 @Embeddable
 public class CsasExchangeRatePK implements Serializable {

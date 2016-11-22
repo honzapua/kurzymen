@@ -7,16 +7,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * Sjednocene kurzy interfacu CSAS a fixeru do jednotho DTO => Data 2 sluzeb, ale jenom pro jednu konkretni menu. To cele zapouzdreno v ExchangeRatesDTO
+ * Sjednocene kurzy interfacu CSAS a fixeru do jednotho DTO => Data 2 sluzeb. Zapouzdruje v ExchangeRateDTO
  */
 public class ExchangeRatesDTO implements Serializable {
 
 
+    /*
+     * oba fieldy maji inicializaci, nebude se resit null v budoucnu
+     */
     /**
-     * oba fieldy ma inicializaci nebude se resit null
+     * Mapuje vlastni data (Cela beana) podle kodu meny. Kdyz chci cilene konkretni menu
      */
     private Map<String, ExchangeRateDTO> ratesByCurrency = new HashMap<>();
+    /**
+     * List obsahuje vsechny meny v nahodnem poradi. Kdyz chci prochazet vsechny meny
+     */
     private List<ExchangeRateDTO> rates = new ArrayList<>();
 
     public Map<String, ExchangeRateDTO> getRatesByCurrency() {

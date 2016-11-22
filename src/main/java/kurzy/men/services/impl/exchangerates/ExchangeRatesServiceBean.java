@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 /**
- * Implementace Normalizece  u men ktere uvadeji na 100 jednotek. Potrebujeme 1:1
+ * Implementace Normalizece u men ktere uvadeji na 100 jednotek. Potrebujeme 1:1
  *
  * Do Beany by se dokumentace psat nemela, ale stacit by melo inheritDoc
  * {@inheritDoc}

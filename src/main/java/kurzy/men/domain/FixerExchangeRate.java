@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Balik domen reprezentuje data v databazi
+ * Reprezentuje data integracniho kanalu fixer
  */
 @Entity
 @Table(name = "FIXER_EXCHANGE_RATES")
