@@ -1,5 +1,6 @@
 package kurzy.men.services.impl.currencycomparator;
 
+import kurzy.men.constant.ApplicationConst;
 import kurzy.men.services.api.currencycomparator.CurrencyComparatorService;
 import kurzy.men.services.api.dto.ExchangeRateDTO;
 import kurzy.men.services.api.dto.ExchangeRatesDTO;
@@ -11,6 +12,8 @@ import kurzy.men.services.api.reportformatter.dto.ReportDataDTO;
 import kurzy.men.services.api.reportformatter.dto.ReportDataEntryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import static java.lang.Math.abs;
 
 /**
  *
@@ -31,8 +34,11 @@ public class CurrencyComparatorServiceBean implements CurrencyComparatorService 
     public void compareAndReport() {
         ExchangeRatesDTO exchangeRates = exchangeRatesService.getExchangeRates();
         ReportDataDTO reportDataDTO = toReport(exchangeRates);
-        MailDTO mail = reportFormatterService.format(reportDataDTO);
-        mailService.sendMail(mail);
+        //je tam alespon jeden zaznam? Jestli jo reportuj a posilej
+        if (!reportDataDTO.getEntries().isEmpty()){
+            MailDTO mail = reportFormatterService.format(reportDataDTO);
+            mailService.sendMail(mail);
+        }
     }
 
     private ReportDataDTO toReport(ExchangeRatesDTO rates) {
@@ -41,11 +47,13 @@ public class CurrencyComparatorServiceBean implements CurrencyComparatorService 
         result.getRecipients().add("jan.smidrkal@gmail.com ");
 
         for (ExchangeRateDTO rate : rates.getRates()) {
-            ReportDataEntryDTO reportDataEntryDTO = new ReportDataEntryDTO();
-            reportDataEntryDTO.setCsasValue(rate.getCsasRate());
-            reportDataEntryDTO.setFixerValue(rate.getFixerRate());
-            reportDataEntryDTO.setDescription("Zde se doplni Description");
-            result.getEntries().add(reportDataEntryDTO);
+            if(abs(rate.getCsasRate() - rate.getFixerRate()) > ApplicationConst.CURRENCY_RATE_DIFFERENCE) {
+                ReportDataEntryDTO reportDataEntryDTO = new ReportDataEntryDTO();
+                reportDataEntryDTO.setCsasValue(rate.getCsasRate());
+                reportDataEntryDTO.setFixerValue(rate.getFixerRate());
+                reportDataEntryDTO.setDescription("Zde se doplni Description");
+                result.getEntries().add(reportDataEntryDTO);
+            }
         }
 
         return result;

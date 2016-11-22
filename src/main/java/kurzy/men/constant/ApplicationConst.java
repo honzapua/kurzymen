@@ -25,6 +25,8 @@ public final class ApplicationConst {
 
     public static final String APPLICATION_FROM_ADDRESS = "info@kurzymen.cz"; //gmail nam to prepise
 
+    public static final Double CURRENCY_RATE_DIFFERENCE = 0.01D;
+
     static {
         DEFAULT_FIXER_BASE = "CZK"; //fixer na rozdil CSAS musime prepnout na CZK
     }
