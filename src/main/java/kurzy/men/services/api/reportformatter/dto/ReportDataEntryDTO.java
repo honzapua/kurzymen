@@ -9,6 +9,7 @@ public class ReportDataEntryDTO implements Serializable {
     private String description;
     private Double fixerValue;
     private Double csasValue;
+    private Double valueDifference;
 
     public String getDescription() {
         return description;
@@ -32,5 +33,23 @@ public class ReportDataEntryDTO implements Serializable {
 
     public void setCsasValue(Double csasValue) {
         this.csasValue = csasValue;
+    }
+
+    public Double getValueDifference() {
+        return valueDifference;
+    }
+
+    public void setValueDifference(Double valueDifference) {
+        this.valueDifference = valueDifference;
+    }
+
+    @Override
+    public String toString() {
+        return "ReportDataEntryDTO{" +
+                "description='" + description + '\'' +
+                ", fixerValue=" + fixerValue +
+                ", csasValue=" + csasValue +
+                ", valueDifference=" + valueDifference +
+                '}';
     }
 }

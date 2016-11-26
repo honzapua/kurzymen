@@ -28,7 +28,7 @@ public class ReportFormatterServiceBean implements ReportFormatterService{
         sb.append("\n\n");
 
         for(ReportDataEntryDTO entry: data.getEntries()){
-            sb.append(" - CSAS: ").append(entry.getCsasValue()).append(", Fixer: ").append(entry.getFixerValue()).append(String.format(". (%s)", entry.getDescription()));
+            sb.append(" - CSAS: ").append(entry.getCsasValue()).append(", Fixer: ").append(String.format("%.3f", entry.getFixerValue())).append(String.format(", rozdil: %.3f. (%s)",entry.getValueDifference(), entry.getDescription()));
             sb.append("\n");
 
         }
