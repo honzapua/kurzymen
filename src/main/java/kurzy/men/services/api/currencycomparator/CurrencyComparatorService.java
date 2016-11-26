@@ -5,5 +5,9 @@ package kurzy.men.services.api.currencycomparator;
  * Jestli je rozdil v kurzech  > 0.01 alespon v jedne mene, tak odesle mail
  */
 public interface CurrencyComparatorService {
+
+    /**
+     * Stahuje data, vybira meny podle business pozadavku, formatuje email a odesila jej
+     */
     void compareAndReport();
 }

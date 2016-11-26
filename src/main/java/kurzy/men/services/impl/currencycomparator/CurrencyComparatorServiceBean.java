@@ -1,6 +1,5 @@
 package kurzy.men.services.impl.currencycomparator;
 
-import com.sun.javafx.binding.StringFormatter;
 import kurzy.men.constant.ApplicationConst;
 import kurzy.men.services.api.currencycomparator.CurrencyComparatorService;
 import kurzy.men.services.api.dto.ExchangeRateDTO;
@@ -19,8 +18,7 @@ import org.springframework.stereotype.Service;
 import static java.lang.Math.abs;
 
 /**
- *
- * Created by honzapua on 20.11.2016.
+ * Recipienti jsou ziskavani z tridy {@linkplain EmailRecipients EmailRecipients }
  */
 @Service
 public class CurrencyComparatorServiceBean implements CurrencyComparatorService {

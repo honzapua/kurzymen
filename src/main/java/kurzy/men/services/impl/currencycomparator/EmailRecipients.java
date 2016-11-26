@@ -15,6 +15,10 @@ import java.util.List;
 /**
  * Zpristupnuje seznam adresatu z configuracniho resourcu recipients.txt.template
  * Singleton si pri prvnim pouziti natahne recipients.txt
+ * Email je kazdy na jedne radce, neosekavaji se bile znaky,
+ * Sekvence eol konce radky neni soucasti (jedina se odsekne),
+ * Prazdne radky se preskakuji (Opet bez orezavani bilych znaku),
+ * Radek se povazuje za komentar zacina-li znakem #
  */
 public final class EmailRecipients {
 
