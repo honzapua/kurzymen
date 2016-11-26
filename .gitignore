@@ -52,3 +52,4 @@ Temporary Items
 target/
 webapikey.properties
 application.properties
+recipients.txt
