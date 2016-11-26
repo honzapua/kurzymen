@@ -29,9 +29,19 @@ public final class ApplicationConst {
 
     public static final boolean ENABLE_SCHEDULER = true;
 
+    /**
+     * Logger pro Modul sberu datu z externich systemu u nas => ExchangeRateServiceBean
+     */
+    public static final String LOGGER_EXCHANGE_RATES;
+    public static final String LOGGER_CURRENCY_COMPARATOR_SCHEDULER;
+    public static final String LOGGER_CURRENCY_COMPARATOR_SERVICE;
 
     static {
         DEFAULT_FIXER_BASE = "CZK"; //fixer na rozdil CSAS musime prepnout na CZK
+        final String loggerPrefix = "kurzy.men.";
+        LOGGER_EXCHANGE_RATES = loggerPrefix + "EXRT";
+        LOGGER_CURRENCY_COMPARATOR_SCHEDULER = loggerPrefix + "CCSC";
+        LOGGER_CURRENCY_COMPARATOR_SERVICE = loggerPrefix + "CCSV";
     }
 
     private ApplicationConst() {

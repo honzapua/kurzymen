@@ -18,4 +18,11 @@ public class CSASExchangeRatesDTO implements Serializable { // prenasi data musi
     public void setRates(List<CSASExchangeRateDTO> rates) {
         this.rates = rates;
     }
+
+    @Override
+    public String toString() {
+        return "CSASExchangeRatesDTO{" +
+                "rates=" + rates +
+                '}';
+    }
 }

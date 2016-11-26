@@ -36,4 +36,14 @@ public class MailDTO implements Serializable {
     public void setBody(String body) {
         this.body = body;
     }
+
+    @Override
+    public String toString() {
+        return "MailDTO{" +
+                "recipients=" + recipients +
+                ", subject='" + subject + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
+
 }

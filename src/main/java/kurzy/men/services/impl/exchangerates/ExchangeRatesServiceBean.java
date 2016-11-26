@@ -10,6 +10,8 @@ import kurzy.men.services.api.dto.ExchangeRateDTO;
 import kurzy.men.services.api.dto.ExchangeRatesDTO;
 import kurzy.men.services.api.exchangerates.ExchangeRatesService;
 import kurzy.men.services.api.exchangeratesstorage.ExchangeRatesStorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ import java.util.Map;
 @Service
 public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationConst.LOGGER_EXCHANGE_RATES);
+
     @Autowired
     private ExchangeRateClient csasClient;
 
@@ -39,9 +43,15 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
     @Override
     public ExchangeRatesDTO getExchangeRates() {
+        logger.info("About obtain and normalize exchange rates");
+
+        logger.info("About to get CSAS data");
         CSASExchangeRatesDTO csasData = csasClient.getCurrentRates();
+        logger.info("About to get fixer data");
         FixerExchangeReferenceDTO fixerData = fixerClient.getLatestExchangeReferenceRates(ApplicationConst.DEFAULT_FIXER_BASE);
+        logger.info("About to store all data");
         store(csasData, fixerData);
+        logger.info("About normalize data");
         return normalizeData(csasData, fixerData);
     }
 
@@ -68,7 +78,7 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
     }
 
     /**
-     * Normalizuje hodnoty sporitelny, ktera ma amount, ktery fixer nema. Je potreba udelat vypocet ohledne 100 yenu apod.
+     * Normalizuje hodnoty sporitelny, ktera ma amount, ktery fixer nema. Je potreba udelat vypocet ohledne 100 yenu, forintu apod.
      * @param csasData
      * @param fixerData
      * @return

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CurrencyComparatorSchedulerBean {
-    private static final Logger log = LoggerFactory.getLogger(CurrencyComparatorSchedulerBean.class);
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationConst.LOGGER_CURRENCY_COMPARATOR_SCHEDULER);
 
     @Autowired
     private CurrencyComparatorService currencyComparatorService;
@@ -21,9 +21,12 @@ public class CurrencyComparatorSchedulerBean {
     @Scheduled(fixedDelay = 1 * 1000 * 60 * 60) //kazdou hodinu
     public void schedule(){
         if(!ApplicationConst.ENABLE_SCHEDULER){
-            log.warn("Scheduler is disabled; skipping");
+            logger.warn("Scheduler is disabled; skipping");
             return;
         }
+
+        logger.info("Launching currency comparator JOB");
         currencyComparatorService.compareAndReport();
+        logger.info("Currency comparator JOB completed");
     }
 }

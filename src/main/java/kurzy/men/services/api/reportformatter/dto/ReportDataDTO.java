@@ -35,4 +35,13 @@ public class ReportDataDTO implements Serializable {
     public void setEntries(List<ReportDataEntryDTO> entries) {
         this.entries = entries;
     }
+
+    @Override
+    public String toString() {
+        return "ReportDataDTO{" +
+                "caption='" + caption + '\'' +
+                ", entries=" + entries +
+                ", recipients=" + recipients +
+                '}';
+    }
 }
