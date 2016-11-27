@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Implementace klienta podle rozhrani Fixeru. Interface fixer client
@@ -77,11 +74,11 @@ class FixerClientBean implements FixerClient {
     @Override
     public FixerExchangeReferenceDTO getLatestExchangeReferenceRates(String[] symbols) {
         if (logger.isDebugEnabled()) {
-            logger.debug("About to obtain Exchange Reference Rates {}", symbols);
+            logger.debug("About to obtain Exchange Reference Rates {}", Arrays.toString(symbols));
         }
         RestTemplate restTemplate = new RestTemplate();
         if (logger.isDebugEnabled()) {
-            logger.debug("Got result for Exchange Reference Rates {}", symbols);
+            logger.debug("Got result for Exchange Reference Rates {}", Arrays.toString(symbols));
         }
         return restTemplate.getForObject(ApplicationConst.FIXER_RATES_SYMBOLS_URL, FixerExchangeReferenceDTO.class, new Object[]{symbols});
     }
