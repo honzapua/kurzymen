@@ -68,7 +68,7 @@
 								<goal>test-jar</goal>
 							</goals>
 							<configuration>
-								<private>true</private>
+								<show>private</show>
 								<verbose>true</verbose>
 								<use>true</use>
 								<linksource>true</linksource>

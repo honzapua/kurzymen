@@ -19,8 +19,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 /**
- * Created by honzapua on 20.11.2016.
- * JavaMail
+ * Implementuje sluzbu MailService
  */
 @Service
 public class MailServiceBean implements MailService{
@@ -31,7 +30,7 @@ public class MailServiceBean implements MailService{
      * Doplnuje se Diky Dependency Injection podle springove configurace spring-mail-config.xml
      * Normalne se to delalo @Autowired
      * v XML zkonfigurovano pro Gmail
-     * @ImportResource("classpath:spring-mail-config.xml") v hlavni tride Application
+     * {@code @ImportResource("classpath:spring-mail-config.xml")} v hlavni tride Application
      */
     private JavaMailSender mailSender;
 

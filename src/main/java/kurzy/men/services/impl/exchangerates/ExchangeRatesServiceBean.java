@@ -70,11 +70,11 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
     }
 
     /**
-     * Transformuje sporitelni data <k,v> k = kod meny, v = beana dat pro konkretni menu. Vytvarime neco index v databazi. Kdyz by nebyl index, dochazelo by k FullScan a to je velmi pomale.
+     * Transformuje sporitelni data &lt;k,v&gt; k = kod meny, v = beana dat pro konkretni menu.
      *
-     * @param csasData
-     * @param fixerData
-     * @return
+     * @param csasData online data sporitelny
+     * @param fixerData online data fixeru
+     * @return normalizovana data, ktera jsou spolecna fixeru a CSAS
      */
     private ExchangeRatesDTO normalizeData(CSASExchangeRatesDTO csasData, FixerExchangeReferenceDTO fixerData){
         logger.info("About to normalizeData; creating index for CSAS by currency");
@@ -88,9 +88,9 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
     /**
      * Normalizuje hodnoty sporitelny, ktera ma amount, ktery fixer nema. Je potreba udelat vypocet ohledne 100 yenu, forintu apod.
-     * @param csasData
-     * @param fixerData
-     * @return
+     * @param csasData indexovana data sporitelny podle currency
+     * @param fixerData fixerdata tak jak jsou
+     * @return normalizovana data, ktera jsou spolecna fixeru a CSAS
      */
 
     private ExchangeRatesDTO normalizeData(Map<String, CSASExchangeRateDTO> csasData, FixerExchangeReferenceDTO fixerData){
