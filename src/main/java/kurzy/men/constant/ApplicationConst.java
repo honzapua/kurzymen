@@ -30,7 +30,7 @@ public final class ApplicationConst {
     public static final boolean ENABLE_SCHEDULER = true;
 
     /**
-     * Logger pro Modul sberu datu z externich systemu u nas => ExchangeRateServiceBean
+     * Logger pro Modul sberu dat z externich systemu u nas =&gt; (implikace) ExchangeRateServiceBean
      */
     public static final String LOGGER_EXCHANGE_RATES;
     public static final String LOGGER_CURRENCY_COMPARATOR_SCHEDULER;

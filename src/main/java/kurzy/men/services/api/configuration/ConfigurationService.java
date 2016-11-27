@@ -6,8 +6,8 @@ package kurzy.men.services.api.configuration;
 public interface ConfigurationService {
     /**
      * Vraci hodnoty konfigurace
-     * @param option
-     * @return
+     * @param option prvek ze seznamu konfiguracnich voleb Enum
+     * @return hodnota konfiguracni volby
      */
     String getOption(ConfigurationOption option);
 

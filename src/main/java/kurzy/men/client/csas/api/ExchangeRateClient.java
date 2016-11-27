@@ -15,7 +15,7 @@ public interface ExchangeRateClient {
     CSASExchangeRatesDTO getCurrentRates();
 
     /**
-     * @param date
+     * @param date Urcuje ke kteremu datu
      * @return vraci kurzy k datu dle parametru date
      */
     CSASExchangeRatesDTO getHistoricalExchangeRates(Date date);

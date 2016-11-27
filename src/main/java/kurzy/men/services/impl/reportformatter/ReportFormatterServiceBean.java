@@ -14,8 +14,8 @@ public class ReportFormatterServiceBean implements ReportFormatterService{
 
     /**
      * Pouziva caption na subject mailu
-     * @param data
-     * @return
+     * @param data vstupni data reportu
+     * @return strukturu dat pro {@linkplain kurzy.men.services.api.mailservice.MailService MailService}
      */
     @Override
     public MailDTO format(ReportDataDTO data) {

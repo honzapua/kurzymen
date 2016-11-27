@@ -67,7 +67,9 @@ public class TestController {
 
     /**
      * Nenacita data z fixeru, ale z nasi DB.
-     * @return
+     * @param id idcko
+     * @return vraci data z db
+     *
      */
     @RequestMapping(value = "/fixerdb")
     public FixerExchangeReferenceDTO getFixerDb(@RequestParam(value = "id", required = false) Long id) {

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Sjednocene kurzy interfacu CSAS a fixeru do jednotho DTO => Data 2 sluzeb. Zapouzdruje v ExchangeRateDTO
+ * Sjednocene kurzy interfacu CSAS a fixeru do jednotho DTO. Z toho plyne, ze Data z 2 sluzeb. Zapouzdruje v ExchangeRateDTO
  */
 public class ExchangeRatesDTO implements Serializable {
 
