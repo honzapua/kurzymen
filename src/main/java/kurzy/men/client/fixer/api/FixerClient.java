@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by honzapua on 4.11.2016.
+ * Reprezentace sluzby fixeru. Je to client
  */
 public interface FixerClient {
     FixerExchangeReferenceDTO getLatestExchangeReferenceRates();
@@ -18,7 +18,7 @@ public interface FixerClient {
     /**
      * pomocna metoda a zjednoduseni prace v klientovi je navic oproti API fixer.io.
      * Nemeni povahu klienta.
-     * @return vrati
+     * @return seznam podporovanych men fixeru
      */
     List<String> getCurrencies();
 
