@@ -35,6 +35,10 @@ public final class ApplicationConst {
     public static final String LOGGER_EXCHANGE_RATES;
     public static final String LOGGER_CURRENCY_COMPARATOR_SCHEDULER;
     public static final String LOGGER_CURRENCY_COMPARATOR_SERVICE;
+    public static final String LOGGER_COMMON;
+    public static final String LOGGER_EXCHANGE_RATE_STORAGE;
+    public static final String LOGGER_MAIL_SERVICE;
+    public static final String LOGGER_REPORTING;
 
     static {
         DEFAULT_FIXER_BASE = "CZK"; //fixer na rozdil CSAS musime prepnout na CZK
@@ -42,6 +46,10 @@ public final class ApplicationConst {
         LOGGER_EXCHANGE_RATES = loggerPrefix + "EXRT";
         LOGGER_CURRENCY_COMPARATOR_SCHEDULER = loggerPrefix + "CCSC";
         LOGGER_CURRENCY_COMPARATOR_SERVICE = loggerPrefix + "CCSV";
+        LOGGER_COMMON = loggerPrefix + "CMMN";
+        LOGGER_EXCHANGE_RATE_STORAGE = loggerPrefix + "ERST";
+        LOGGER_MAIL_SERVICE = loggerPrefix + "EMSV";
+        LOGGER_REPORTING = loggerPrefix + "RPRT";
     }
 
     private ApplicationConst() {

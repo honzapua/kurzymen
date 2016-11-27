@@ -31,7 +31,7 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
     @Override
     public CSASExchangeRatesDTO getCurrentRates() {
         if (logger.isDebugEnabled()){
-            logger.debug("About to get current rates");
+            logger.debug("About to get current exchange rates");
         }
 
         RestTemplate restTemplate = new RestTemplate();
@@ -42,8 +42,9 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
         ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_CURRENT_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class);
         CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));
+
         if (logger.isDebugEnabled()){
-            logger.debug("Got result {}", dto);
+            logger.debug("Got result current exchange rates {}", dto);
         }
         return dto;
     }
@@ -53,6 +54,9 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
      */
     @Override
     public CSASExchangeRatesDTO getHistoricalExchangeRates(Date date) {
+        if (logger.isDebugEnabled()){
+            logger.debug("About to get historical exchange rates");
+        }
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.put("WEB-API-key", Arrays.asList(new String[] {
@@ -62,6 +66,10 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
         ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_HISTORIC_EXCHANGE_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class, DateUtils.dateToISOString(date));
         CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));
+
+        if (logger.isDebugEnabled()){
+            logger.debug("Got result historical exchange rates {}", dto);
+        }
         return dto;
     }
 

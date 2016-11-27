@@ -43,7 +43,7 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
     @Override
     public ExchangeRatesDTO getExchangeRates() {
-        logger.info("About obtain and normalize exchange rates");
+        logger.info("About to obtain and normalize exchange rates");
 
         logger.info("About to get CSAS data");
         CSASExchangeRatesDTO csasData = csasClient.getCurrentRates();
@@ -57,18 +57,27 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
     @Override
     public ExchangeRatesDTO getExchangeRates(Date date) {
+        logger.info("About to obtain and normalize historical exchange rates");
+
+        logger.info("About to get historical CSAS data");
         CSASExchangeRatesDTO csasData = csasClient.getHistoricalExchangeRates(date);
+        logger.info("About to get historical fixer data");
         FixerExchangeReferenceDTO fixerData = fixerClient.getHistoricalRates(date, ApplicationConst.DEFAULT_FIXER_BASE);
+        logger.info("About to store all historical data");
         store(csasData, fixerData);
+        logger.info("About normalize historical data");
         return normalizeData(csasData, fixerData);
     }
+
     /**
-     * Transformuje sporitelni data <k,v> k = kod meny, v = beana dat pro konkretni menu. Vytvarime neco index v databazi. Kdyz by nebyl index, dochazelo by k FullScan a to by bylo pomale.
+     * Transformuje sporitelni data <k,v> k = kod meny, v = beana dat pro konkretni menu. Vytvarime neco index v databazi. Kdyz by nebyl index, dochazelo by k FullScan a to je velmi pomale.
+     *
      * @param csasData
      * @param fixerData
      * @return
      */
     private ExchangeRatesDTO normalizeData(CSASExchangeRatesDTO csasData, FixerExchangeReferenceDTO fixerData){
+        logger.info("About to normalizeData; creating index for CSAS by currency");
         Map<String, CSASExchangeRateDTO> data = new HashMap<>();
         for (CSASExchangeRateDTO dto: csasData.getRates()){
             data.put(dto.getShortName(), dto);
@@ -86,10 +95,12 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
 
     private ExchangeRatesDTO normalizeData(Map<String, CSASExchangeRateDTO> csasData, FixerExchangeReferenceDTO fixerData){
         ExchangeRatesDTO result = new ExchangeRatesDTO();
+        logger.info("Mapping of fixerData to CSAS data");
         for (Map.Entry<String, Double> entry: fixerData.getRates().entrySet()){
             final String fixerCurrency = entry.getKey();
             //zpracovavame data, ktera mame z obou zdroju
             if(!csasData.containsKey(fixerCurrency)){
+                logger.info("Skipping {} currency; not present CSAS", fixerCurrency);
                 continue;
             }
 
@@ -109,7 +120,10 @@ public class ExchangeRatesServiceBean implements ExchangeRatesService {
     }
 
     private void store(CSASExchangeRatesDTO csasData, FixerExchangeReferenceDTO fixerData){
+        logger.info("About to store csasData");
         exchangeRatesStorageService.storeExchangeRates(csasData);
+
+        logger.info("About to store fixerData");
         exchangeRatesStorageService.storeExchangeRates(fixerData);
     }
 }

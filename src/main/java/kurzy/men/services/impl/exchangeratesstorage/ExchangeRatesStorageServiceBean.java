@@ -3,10 +3,13 @@ package kurzy.men.services.impl.exchangeratesstorage;
 import kurzy.men.client.csas.api.dto.CSASExchangeRateDTO;
 import kurzy.men.client.csas.api.dto.CSASExchangeRatesDTO;
 import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
+import kurzy.men.constant.ApplicationConst;
 import kurzy.men.domain.*;
 import kurzy.men.repositories.CsasExchangeReferenceRepository;
 import kurzy.men.repositories.FixerExchangeReferenceRepository;
 import kurzy.men.services.api.exchangeratesstorage.ExchangeRatesStorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +17,12 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Vse vychazi z interface
+ * Vse vychazi z interface ExchangeRatesStorageService
  */
 @Service
 public class ExchangeRatesStorageServiceBean implements ExchangeRatesStorageService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationConst.LOGGER_EXCHANGE_RATE_STORAGE);
 
     @Autowired
     private FixerExchangeReferenceRepository exchangeReferenceRepository;
@@ -27,6 +32,7 @@ public class ExchangeRatesStorageServiceBean implements ExchangeRatesStorageServ
 
     @Override
     public void storeExchangeRates(CSASExchangeRatesDTO csasData) {
+        logger.info("About to store csasData CSASExchangeRatesDTO");
         CsasExchangeReference er = new CsasExchangeReference();
         er.setLastUpdated(new Date());
         er = csasExchangeReferenceRepository.save(er);
@@ -57,10 +63,12 @@ public class ExchangeRatesStorageServiceBean implements ExchangeRatesStorageServ
         }
 
         csasExchangeReferenceRepository.save(er);
+        logger.info("Successfully saved CSASData");
     }
 
     @Override
     public void storeExchangeRates(FixerExchangeReferenceDTO fixerData) {
+        logger.info("About to store fixerData FixerExchangeRatesDTO");
         FixerExchangeReference er = new FixerExchangeReference();
         er.setBase(fixerData.getBase());
         er.setDate(fixerData.getDate());
@@ -80,6 +88,7 @@ public class ExchangeRatesStorageServiceBean implements ExchangeRatesStorageServ
         }
 
         exchangeReferenceRepository.save(er);
+        logger.info("Successfully saved fixerData");
     }
 
     @Override

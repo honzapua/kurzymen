@@ -63,23 +63,42 @@ class FixerClientBean implements FixerClient {
 
     @Override
     public FixerExchangeReferenceDTO getHistoricalRates(Date date, String base) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("About to obtain result for historical rates {} based on {}", date, base);
+        }
         RestTemplate restTemplate = new RestTemplate();
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Got result for historical rates {}: based {}", date, base);
+        }
         return restTemplate.getForObject(ApplicationConst.FIXER_HISTORIC_RATES_WITH_BASE_URL, FixerExchangeReferenceDTO.class, DateUtils.dateToISOString(date), base);
     }
 
     @Override
     public FixerExchangeReferenceDTO getLatestExchangeReferenceRates(String[] symbols) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("About to obtain Exchange Reference Rates {}", symbols);
+        }
         RestTemplate restTemplate = new RestTemplate();
+        if (logger.isDebugEnabled()) {
+            logger.debug("Got result for Exchange Reference Rates {}", symbols);
+        }
         return restTemplate.getForObject(ApplicationConst.FIXER_RATES_SYMBOLS_URL, FixerExchangeReferenceDTO.class, new Object[]{symbols});
     }
 
     @Override
     public List<String> getCurrencies() {
+        if (logger.isDebugEnabled()) {
+            logger.debug("About to obtain result for getCurrencies");
+        }
         FixerExchangeReferenceDTO latestExchangeReferenceRates = getLatestExchangeReferenceRates();
         Set<String> rateSymbols = latestExchangeReferenceRates.getRates().keySet();
         List<String> result = new ArrayList<>(rateSymbols);
         if (!result.contains(latestExchangeReferenceRates.getBase())) {
             result.add(latestExchangeReferenceRates.getBase());
+        }
+        if (logger.isDebugEnabled()) {
+            logger.debug("Got result for getCurrencies");
         }
         return result;
     }

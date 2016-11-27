@@ -1,9 +1,12 @@
 package kurzy.men.services.impl.reportformatter;
 
+import kurzy.men.constant.ApplicationConst;
 import kurzy.men.services.api.mailservice.dto.MailDTO;
 import kurzy.men.services.api.reportformatter.ReportFormatterService;
 import kurzy.men.services.api.reportformatter.dto.ReportDataDTO;
 import kurzy.men.services.api.reportformatter.dto.ReportDataEntryDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReportFormatterServiceBean implements ReportFormatterService{
 
+    public static final Logger logger = LoggerFactory.getLogger(ApplicationConst.LOGGER_REPORTING);
+
     /**
      * Pouziva caption na subject mailu
      * @param data vstupni data reportu
@@ -19,6 +24,7 @@ public class ReportFormatterServiceBean implements ReportFormatterService{
      */
     @Override
     public MailDTO format(ReportDataDTO data) {
+        logger.info("About to create email from Reporting data");
         MailDTO result = new MailDTO();
         result.setSubject(data.getCaption());
         result.getRecipients().addAll(data.getRecipients());
@@ -34,6 +40,7 @@ public class ReportFormatterServiceBean implements ReportFormatterService{
         }
 
         result.setBody(sb.toString());
+        logger.info("Email was formatted successfully");
         return result;
     }
 }
