@@ -25,6 +25,10 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
 
     private static final Logger logger = LoggerFactory.getLogger(ExchangeRatesClientBean.class);
 
+    private static final String CSAS_HISTORIC_EXCHANGE_RATES_URL = "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates/{date}";
+
+    private static final String CSAS_CURRENT_RATES_URL = "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates";
+
     /**
      * {@inheritDoc}
      */
@@ -39,7 +43,7 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
         headers.put("WEB-API-key", Arrays.asList(new String[] {
                 WebApiKeyConfiguration.getWebApiKey()}));
         HttpEntity<Object> entity = new HttpEntity<>(headers);
-        ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_CURRENT_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class);
+        ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(CSAS_CURRENT_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class);
         CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));
 
@@ -62,8 +66,11 @@ public class ExchangeRatesClientBean implements ExchangeRateClient {
         headers.put("WEB-API-key", Arrays.asList(new String[] {
                 WebApiKeyConfiguration.getWebApiKey()}));
         HttpEntity<Object> entity = new HttpEntity<>(headers);
-        //Provolava rest vraci kurzy k datu napsanem za lomitkem URL.
-        ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(ApplicationConst.CSAS_HISTORIC_EXCHANGE_RATES_URL, HttpMethod.GET, entity, CSASExchangeRateDTO[].class, DateUtils.dateToISOString(date));
+        //Provolava rest vraci kurzy k datu napsanem za lomitkem URL (v konstante).
+        ResponseEntity<CSASExchangeRateDTO[]> response = restTemplate.exchange(
+                CSAS_HISTORIC_EXCHANGE_RATES_URL,
+                HttpMethod.GET, entity, CSASExchangeRateDTO[].class,
+                DateUtils.dateToISOString(date));
         CSASExchangeRatesDTO dto = new CSASExchangeRatesDTO();
         dto.setRates(Arrays.asList(response.getBody()));
 

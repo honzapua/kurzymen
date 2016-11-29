@@ -2,7 +2,6 @@ package kurzy.men.client.fixer.impl;
 
 import kurzy.men.client.fixer.api.FixerClient;
 import kurzy.men.client.fixer.api.dto.FixerExchangeReferenceDTO;
-import kurzy.men.constant.ApplicationConst;
 import kurzy.men.utils.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +11,22 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 
 /**
- * Implementace klienta podle rozhrani Fixeru. Interface fixer client
+ * {@inheritDoc}
  */
 @Service
 class FixerClientBean implements FixerClient {
 
     private static final Logger logger = LoggerFactory.getLogger(FixerClientBean.class);
+
+    private static final String FIXER_RATES_URL = "http://api.fixer.io/latest";
+
+    private static final String FIXER_RATES_BASE_URL = "http://api.fixer.io/latest?base={base}";
+
+    private static final String FIXER_HISTORIC_RATES_URL = "http://api.fixer.io/{date}";
+
+    private static final String FIXER_HISTORIC_RATES_WITH_BASE_URL = "http://api.fixer.io/{date}?base={base}";
+
+    private static final String FIXER_RATES_SYMBOLS_URL = "http://api.fixer.io/latest?symbols={symbols}";
 
     @Override
     public FixerExchangeReferenceDTO getLatestExchangeReferenceRates() {
@@ -25,7 +34,7 @@ class FixerClientBean implements FixerClient {
             logger.debug("About to obtain latest exchange rates ");
         }
         RestTemplate restTemplate = new RestTemplate();
-        FixerExchangeReferenceDTO result = restTemplate.getForObject(ApplicationConst.FIXER_RATES_URL, FixerExchangeReferenceDTO.class);
+        FixerExchangeReferenceDTO result = restTemplate.getForObject(FIXER_RATES_URL, FixerExchangeReferenceDTO.class);
         if (logger.isDebugEnabled()) {
             logger.debug("Got latest exchange rates {}", result);
         }
@@ -38,7 +47,7 @@ class FixerClientBean implements FixerClient {
             logger.debug("About to obtain '{}' based latest exchange rates ", base);
         }
         RestTemplate restTemplate = new RestTemplate();
-        FixerExchangeReferenceDTO result = restTemplate.getForObject(ApplicationConst.FIXER_RATES_BASE_URL, FixerExchangeReferenceDTO.class, base);
+        FixerExchangeReferenceDTO result = restTemplate.getForObject(FIXER_RATES_BASE_URL, FixerExchangeReferenceDTO.class, base);
         if (logger.isDebugEnabled()) {
             logger.debug("Got result for base '{}': {}", base, result);
         }
@@ -51,7 +60,7 @@ class FixerClientBean implements FixerClient {
             logger.debug("About to obtain result for historical rates {}", date);
         }
         RestTemplate restTemplate = new RestTemplate();
-        FixerExchangeReferenceDTO result = restTemplate.getForObject(ApplicationConst.FIXER_HISTORIC_RATES_URL, FixerExchangeReferenceDTO.class, DateUtils.dateToISOString(date));
+        FixerExchangeReferenceDTO result = restTemplate.getForObject(FIXER_HISTORIC_RATES_URL, FixerExchangeReferenceDTO.class, DateUtils.dateToISOString(date));
         if (logger.isDebugEnabled()) {
             logger.debug("Got result for historical date {}: {}", date, result);
         }
@@ -68,7 +77,7 @@ class FixerClientBean implements FixerClient {
         if (logger.isDebugEnabled()) {
             logger.debug("Got result for historical rates {}: based {}", date, base);
         }
-        return restTemplate.getForObject(ApplicationConst.FIXER_HISTORIC_RATES_WITH_BASE_URL, FixerExchangeReferenceDTO.class, DateUtils.dateToISOString(date), base);
+        return restTemplate.getForObject(FIXER_HISTORIC_RATES_WITH_BASE_URL, FixerExchangeReferenceDTO.class, DateUtils.dateToISOString(date), base);
     }
 
     @Override
@@ -80,7 +89,7 @@ class FixerClientBean implements FixerClient {
         if (logger.isDebugEnabled()) {
             logger.debug("Got result for Exchange Reference Rates {}", Arrays.toString(symbols));
         }
-        return restTemplate.getForObject(ApplicationConst.FIXER_RATES_SYMBOLS_URL, FixerExchangeReferenceDTO.class, new Object[]{symbols});
+        return restTemplate.getForObject(FIXER_RATES_SYMBOLS_URL, FixerExchangeReferenceDTO.class, new Object[]{symbols});
     }
 
     @Override
