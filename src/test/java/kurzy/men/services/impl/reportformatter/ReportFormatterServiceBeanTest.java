@@ -63,6 +63,7 @@ public class ReportFormatterServiceBeanTest {
         result.getRecipients().add("r1");
         result.getRecipients().add("r2");
 
+        //Stringbuilder vyhodny na nekonecne spojovani
         StringBuilder sb = new StringBuilder();
         sb.append("Report kurzu men: ");
         sb.append("\n\n");

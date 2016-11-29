@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 /**
  * V soucasne dobe je resena implementace z ApplicationConst
  * Technicky modul
+ * Work in progress
  */
 @ToDo("Vyresit ukladani voleb, patrne spring singleton")
 @Service

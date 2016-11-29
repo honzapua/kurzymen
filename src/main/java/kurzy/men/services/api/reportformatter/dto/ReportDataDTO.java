@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Vstupni data pro formatovac emailu. Potrebujeme vedet, ktere meny maji pozadavany rozdil v kurzech. Je jich dynamicky pocet proto kolekce List
+ * Vstupni data pro formatovac emailu. Potrebujeme vedet, ktere meny maji
+ * pozadavany rozdil v kurzech. Je jich dynamicky pocet, proto pouzita kolekce List
  */
 public class ReportDataDTO implements Serializable {
     private String caption; //nazev obecne - u nas subject mailu

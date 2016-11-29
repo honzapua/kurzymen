@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Delame primarne JPA, ale chovame se k nemu jako provideru JPA
  * Entita reprezentuje tabulky.
  *
  * Reprezentuje data integracniho kanalu CSAS

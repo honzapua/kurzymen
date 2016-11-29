@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Vse vychazi z interface ExchangeRatesStorageService
+ * {@inheritDoc}
  */
 @Service
 public class ExchangeRatesStorageServiceBean implements ExchangeRatesStorageService {

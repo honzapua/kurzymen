@@ -18,7 +18,7 @@ public class ReportFormatterServiceBean implements ReportFormatterService{
     public static final Logger logger = LoggerFactory.getLogger(ApplicationConst.LOGGER_REPORTING);
 
     /**
-     * Pouziva caption na subject mailu
+     * Pouziva caption na subject mailu, navic zaokrouhluje na 3 desetinna cisla 0.3f
      * @param data vstupni data reportu
      * @return strukturu dat pro {@linkplain kurzy.men.services.api.mailservice.MailService MailService}
      */
@@ -34,7 +34,10 @@ public class ReportFormatterServiceBean implements ReportFormatterService{
         sb.append("\n\n");
 
         for(ReportDataEntryDTO entry: data.getEntries()){
-            sb.append(" - CSAS: ").append(entry.getCsasValue()).append(", Fixer: ").append(String.format("%.3f", entry.getFixerValue())).append(String.format(", rozdil: %.3f. (%s)",entry.getValueDifference(), entry.getDescription()));
+            sb.append(" - CSAS: ").append(entry.getCsasValue())
+                    .append(", Fixer: ").append(String.format("%.3f", entry.getFixerValue()))
+                    .append(String.format(", rozdil: %.3f. (%s)",
+                            entry.getValueDifference(), entry.getDescription()));
             sb.append("\n");
 
         }

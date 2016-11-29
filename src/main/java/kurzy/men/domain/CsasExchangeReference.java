@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Mapuje na tabulku.
+ * Entita mapuje na tabulku.
  * Reprezentuje data integracniho kanalu CSAS
  */
 @Entity
