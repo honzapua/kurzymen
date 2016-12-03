@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableCaching
+//@EnableCaching
 @EnableScheduling
 @EnableAsync
 @ImportResource("classpath:spring-mail-config.xml")
