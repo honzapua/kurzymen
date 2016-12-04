@@ -1,6 +1,6 @@
 spring.jpa.show-sql=true
 logging.level.org.springframework.data=DEBUG
-spring.jpa.hibernate.ddl-auto=none
+spring.jpa.generate-ddl=false
 
 spring.datasource.url=
 spring.datasource.username=
